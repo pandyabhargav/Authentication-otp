@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f0f4ff;
+            --accent-color: #ff7b00; 
+            --text-color: #333333;
+            --placeholder-color: #8B8C8E;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: var(--primary-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--placeholder-color);
+        }
+
+        .otp input {
+            width: 40px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            margin: 5px;
+            border: 1px solid #DDDDDD;
+            border-radius: 6px;
+            transition: border-color 0.3s;
+        }
+
+        .otp input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        .bt1 {
+            background-color: var(--accent-color);
+            border: none;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 12px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .bt1:hover {
+            background-color: darkorange;
+        }
+
+        .nav-links {
+            color: var(--placeholder-color);
+            margin-bottom: 20px;
+        }
+
+        .nav-links a {
+            color: var(--placeholder-color);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<section>
+    <div class="container">
+        <h2>One Time Password</h2>
+        <p class="nav-links">
+            <a class="px-1" href="#"><i class="fa-sharp fa-solid fa-house"></i> Home</a> /
+            <a class="px-1" href="#">OTP</a>
+        </p>
+        <p>We have sent a verification code to:</p>
+        <h5>+1 (692) 52 - 95555</h5>
+        <form class="otp" action="/otpForm/<%= userId %>" method="POST">
+            <div>
+                <input type="text" id="otp1" name="otp" maxlength="1" required 
+                       placeholder="0" 
+                       oninput="autoFocusInput(this, 'otp2', null)" 
+                       onkeydown="handleBackspace(event, 'otp1', null)" />
+                <input type="text" id="otp2" name="otp" maxlength="1" required 
+                       placeholder="0" 
+                       oninput="autoFocusInput(this, 'otp3', 'otp1')" 
+                       onkeydown="handleBackspace(event, 'otp2', 'otp1')" />
+                <input type="text" id="otp3" name="otp" maxlength="1" required 
+                       placeholder="0" 
+                       oninput="autoFocusInput(this, 'otp4', 'otp2')" 
+                       onkeydown="handleBackspace(event, 'otp3', 'otp2')" />
+                <input type="text" id="otp4" name="otp" maxlength="1" required 
+                       placeholder="0" 
+                       oninput="autoFocusInput(this, null, 'otp3')" 
+                       onkeydown="handleBackspace(event, 'otp4', 'otp3')" />
+            </div>
+            <button class="bt1" type="submit">
+                CONTINUE
+            </button>
+        </form>
+    </div>
+</section>
+
+<script>
+    // Function to handle automatic focus on the next or previous input field
+    function autoFocusInput(current, nextInputId, prevInputId) {
+        if (current.value.length === current.maxLength) {
+            document.getElementById(nextInputId).focus();
+        } else if (current.value.length === 0 && prevInputId) {
+            document.getElementById(prevInputId).focus();
+        }
+    }
+
+    function handleBackspace(event, currentInputId, previousInputId) {
+        if (event.key === "Backspace") {
+            const currentInput = document.getElementById(currentInputId);
+            if (currentInput.value === '') {
+                if (previousInputId) {
+                    document.getElementById(previousInputId).focus();
+                }
+            }
+        }
+    }
+
+    // Display OTP alert if it exists in the rendered template
+    window.onload = function() {
+        const generatedOTP = '<%= otp %>'; // OTP passed from server
+        if (generatedOTP) {
+            alert(`Your OTP is: ${generatedOTP}`);
+        }
+    };
+</script>
+
+</body>
+</html>

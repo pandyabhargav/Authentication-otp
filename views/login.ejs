@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <section class="sing-poti bg-white">
+        <div class="bg-header-img-2 col-12 d-flex justify-content-center align-items-center">
+            <div class="singup pt-50 col-12 text-center">
+                <h2 class="pt-5">Login</h2>
+                <p class="pb-5 text-white">
+                    <a href="/" class="px-1"><i class="fa-sharp fa-solid fa-house"></i> Home</a> /
+                    <a href="#" class="px-1">Login</a>
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center singup-main align-items-center signin">
+                <div class="p-5 col-12">
+                    <h2>Sign in</h2>
+                    <p class="text-danger" id="error-message"></p>
+                    <p>or <span><a href="/singup" class="text-orange">create an account</a></span></p>
+                    <form id="login-form" action="/login" method="POST">
+                        <div class="row mb-3 py-3">
+                            <div class="form-group col-12 p-3">
+                                <div class="input-icon">
+                                    <input
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        id="email"
+                                        name="email"
+                                        class="form-control px-5 py-4"
+                                        required
+                                    />
+                                    <i class="fa-solid fa-user icon"></i>
+                                </div>
+                            </div>
+                            <div class="form-group col-12 p-3">
+                                <div class="input-icon position-relative">
+                                    <input
+                                        type="password"
+                                        placeholder="Password"
+                                        id="password"
+                                        name="password"
+                                        class="form-control px-5 py-4"
+                                        required
+                                    />
+                                    <i class="fa-solid fa-lock icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="bt1 w-100 rounded p-3" id="submit-button">
+                            Continue
+                        </button>
+                        <div class="d-flex flex-wrap col-12 singup-foter py-3 justify-content-center">
+                            <a href="/forgotForm" style="color: blue;">Forget password</a>
+                        </div>
+                    </form>
+                    <p class="d-flex flex-wrap singup-foter p-3">
+                        By logging in, I accept the <span class="highlight">Terms & Conditions & Privacy Policy</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Blog</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .form-container {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .submit-button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="form-container">
+      <h1 class="form-title">Add a New Blog</h1>
+      <form action="/add" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="title">Blog Title</label>
+          <input type="text" class="form-control" name="title" id="title" placeholder="Enter blog title" required>
+        </div>
+        <div class="form-group">
+          <label for="content">Blog Content</label>
+          <textarea class="form-control" name="content" id="content" rows="6" placeholder="Write your blog content here" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Blog Image</label>
+          <input type="file" class="form-control-file" name="image" id="image">
+        </div>
+        <button type="submit" class="btn btn-primary submit-button">Add Blog</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

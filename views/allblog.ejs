@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZwiGato</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts/dist/apexcharts.css">
+    <link rel="stylesheet" href="css/index.css">
+<body>
+ 
+
+        <div class="sidebar">
+            <div class="bg-img">
+                <div class="logo d-flex p-3 flex-wrap justify-content-evenly align-items-center">
+                    <h3>ZwiGato</h3>
+                    <div>
+                        <img src="images/header.gif" alt="fire" />
+                    </div>
+                </div>
+                <div class="custom-navbar scroll-bar">
+                    <ul class="p-3">
+                        <li class="text-white d-flex text-start align-items-center"><i class="fa-solid fa-house-user me-3"></i> <span><a href="/">Dashboard</a></span></li>
+                        <li class="text-white d-flex text-start align-items-center" id="toggleProduct">
+                            <i class="fa-solid fa-shop me-3"></i>
+                            <span class="flex-grow-1">Blogs</span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </li>
+                        <ul id="subList" class="text-white sub-list">
+                            <li><a href="/all">-<span class="ms-3">All Blogs</span></a></li>
+                            <li><a href="/myblog">-<span class="ms-3">My Blogs </span></a></li>
+                            <li><a href="/add">-<span class="ms-3">Add Blogs </span></a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content d-flex flex-wrap">
+            <header class="bg-white">
+                <div class="container-fluid">
+                    <div class="d-flex flex-wrap col-12 bg-white p-3 justify-content-between align-items-center">
+                        <div class="d-flex flex-wrap col-4 align-items-center">
+                            <div class="toglclass col-1 d-flex align-items-center" id="toggleSidebar">
+                                <i class="fa-solid fa-circle-left"></i>
+                            </div>
+                            <div class="col-11">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="m-0">Food that's you loved!</h5>
+                                    <img src="images/header.gif" alt="fire" />
+                                </div>
+                                <div>
+                                    <p class="m-0">Delight your taste with our most famous food !!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 d-flex flex-wrap justify-content-end align-items-center">
+                            <div class="header-icon d-flex flex-wrap align-items-center">
+                                <div class="icon-bg m-1 rounded">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                                <div class="icon-bg m-1 rounded">
+                                    <i class="fa-solid fa-bell"></i>
+                                </div>
+                                <div class="icon-bg m-1 rounded">
+                                    <i class="fa-solid fa-message"></i>
+                                </div>
+                                <div class="icon-bg m-1 rounded">
+                                    <i class="fa-solid fa-moon"></i>
+                                </div>
+                                <div class="profile d-flex flex-wrap justify-content-end align-items-center ms-4" id="profileDropdown">
+                                    <div class="profil-img">
+                                        <img src="images/20230620_095708.png" class="rounded-circle" alt="profile-img" />
+                                    </div>
+                                    <div class="mx-2 d-flex align-items-center">
+                                        <div class="pt-3">
+                                            <!-- <h5><%= user && user.name ? user.name : 'Guest' %>!</h5> -->
+                                            <p>Admin <i class="fa-solid fa-angle-down"></i></p>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-menu" style="display:none;">
+                                        <a class="dropdown-item disabled" href="/profile">Profile</a>
+                                        <a class="dropdown-item disabled" href="/settings">Settings</a>
+                                        <a class="dropdown-item" href="/logout">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main id="mainContent" class="py-4">
+                <div class="container-fluid">
+                    <h1 class="mb-4 text-center">All Blogs</h1>
+                    
+                    <% if (blogs.length === 0) { %>
+                        <div class="alert alert-info text-center">
+                            No blogs available. Please check back later!
+                        </div>
+                    <% } else { %>
+                        <div class="row">
+                            <% blogs.forEach(blog => { %>
+                                <div class="col-md-4 mb-4">
+                                    <div class="card-5">
+                                        <% if (blog.image) { %>
+                                            <img src="<%= blog.image %>" alt="Blog image" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                        <% } %>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= blog.title %></h5>
+                                            <p class="card-text"><%= blog.content.substring(0, 100) + (blog.content.length > 100 ? '...' : '') %></p>
+                                            <p class="text-muted">Posted by: <%=  blog.author%></p>
+                                            <!-- <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read More</a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+            </main>
+            
+        </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Include ApexCharts JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    document.getElementById('toggleProduct').addEventListener('click', function() {
+    const subList = document.getElementById('subList');
+    subList.classList.toggle('expanded'); // Toggle the expanded class
+
+    setTimeout(() => {
+            document.getElementById('loaderContainer').style.display = 'none';
+            // document.getElementById('content').style.display = 'block';
+        }, 1000); // Change the delay as needed
+
+});
+</script>
+</body>
+</html>
